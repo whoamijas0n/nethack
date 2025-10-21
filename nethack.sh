@@ -46,6 +46,10 @@ case $opcion in
 		clear
 		bash scripts/dattk.sh
 		;;
+	"3")
+		clear
+		bash scripts/mnhash.sh
+		;;
 
 
 	"5")
