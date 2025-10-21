@@ -59,9 +59,11 @@ echo ""
 
 read -p $'\e[33m[-] Ingresa el canal de la red a auditar: \e[0m ' ch
 
+pkill -f "kitty --hold bash -c .*airodump-ng"
+
 echo ""
 
-kitty --hold bash -c "sudo airodump-ng -c '$ch' --bssid '$bssid' -w Auditoria '$interfaz'; exec bash" 2>/dev/null &
+kitty --hold bash -c "sudo airodump-ng --channel '$ch' --bssid '$bssid' -w Auditoria '$interfaz'; exec bash" 2>/dev/null &
 
 clear
 
