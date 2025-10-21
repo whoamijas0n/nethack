@@ -101,12 +101,13 @@ case $opthash in
 	3)
 		echo ""
 		echo -e "\033[31m[!] Iniciando ataque de fuerza bruta.\033[0m"
+		echo ""
 		cd Auditoria_$(date +%Y-%m-%d)
 		hcxpcapngtool -o handshake.hc22000 Auditoria-01.cap
 		echo ""
 		hashcat -m 22000 handshake.hc22000 -a 3 ?$char?$char?$char?$char?$char?$char?$char?$char -d $dispID -D $disp -w $workload
 		echo""
-		echo -e "\033[31m[-] Ataque completado. \033[0m"
+		echo -e "\033[32m[-] Ataque completado. \033[0m"
 		echo ""
 		read -p $'\e[33m[-] Presione ENTER para continuar: \e[0m ' ENTER
 		cd ..
