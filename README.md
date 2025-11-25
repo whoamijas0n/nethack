@@ -1,4 +1,4 @@
-# NetHack - Herramienta de Auditoría y Pentesting WiFi
+# NetHack 
 
 NetHack es un conjunto de scripts en Bash diseñados para automatizar y facilitar el proceso de auditoría de seguridad en redes inalámbricas. Esta herramienta integra funcionalidades clave para pruebas de penetración, desde la captura de handshakes hasta ataques de fuerza bruta y despliegue de puntos de acceso falsos (Evil Twin), centralizando el flujo de trabajo en una interfaz de consola unificada.
 
