@@ -51,6 +51,10 @@ case $opcion in
 		bash scripts/mnhash.sh
 		;;
 
+        "4")
+                clear
+                bash scripts/mnport.sh
+                ;;
 
 	"5")
 		echo ""
