@@ -6,10 +6,6 @@ NetHack es un conjunto de scripts en Bash diseñados para automatizar y facilita
   <img src="img/menu.jpeg" alt="Imagen de el menu de Nethack" width="800">
 </p>
 
-## Advertencia
-
-Esta herramienta ha sido desarrollada con fines exclusivamente educativos y de auditoría ética profesional. El uso de este software para atacar objetivos sin consentimiento previo y explícito es ilegal. El desarrollador no se hace responsable por el mal uso que se le pueda dar a esta herramienta ni por los daños causados. Es responsabilidad del usuario final cumplir con todas las leyes locales, estatales y federales aplicables.
-
 ## Características Principales
 
 El script principal gestiona un flujo de trabajo modular que incluye:
@@ -86,6 +82,10 @@ Al iniciar, se presentará un menú interactivo con las siguientes opciones:
     ├── mnuch.sh           # Módulo de monitoreo y captura
     └── requeriments.sh    # Gestor de instalación de paquetes
 ```
+## Advertencia
+
+Esta herramienta ha sido desarrollada con fines exclusivamente educativos y de auditoría ética profesional. El uso de este software para atacar objetivos sin consentimiento previo y explícito es ilegal. El desarrollador no se hace responsable por el mal uso que se le pueda dar a esta herramienta ni por los daños causados. Es responsabilidad del usuario final cumplir con todas las leyes locales, estatales y federales aplicables.
+
 ## Créditos
 
 Desarrollado por Nokia (Rousemary). Repositorio oficial: https://github.com/whoamijas0n/nethack
