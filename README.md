@@ -2,7 +2,7 @@
 
 NetHack es un conjunto de scripts en Bash diseñados para automatizar y facilitar el proceso de auditoría de seguridad en redes inalámbricas. Esta herramienta integra funcionalidades clave para pruebas de penetración, desde la captura de handshakes hasta ataques de fuerza bruta y despliegue de puntos de acceso falsos (Evil Twin), centralizando el flujo de trabajo en una interfaz de consola unificada.
 
-## Descargo de Responsabilidad
+## Advertencia
 
 Esta herramienta ha sido desarrollada con fines exclusivamente educativos y de auditoría ética profesional. El uso de este software para atacar objetivos sin consentimiento previo y explícito es ilegal. El desarrollador no se hace responsable por el mal uso que se le pueda dar a esta herramienta ni por los daños causados. Es responsabilidad del usuario final cumplir con todas las leyes locales, estatales y federales aplicables.
 
