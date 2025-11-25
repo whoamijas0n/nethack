@@ -61,18 +61,18 @@ sudo bash nethack.sh
 
 Al iniciar, se presentará un menú interactivo con las siguientes opciones:
 
-[-] Instalar dependencias: Detecta su gestor de paquetes (apt o pacman) e instala las herramientas base necesarias. Ejecute esto primero si es su primera vez utilizando la herramienta.
+[-]  Instalar dependencias: Detecta su gestor de paquetes (apt o pacman) e instala las herramientas base necesarias. Ejecute esto primero si es su primera vez utilizando la herramienta.
 
-[-] Captura de handshake: Guía el proceso de selección de interfaz, habilitación de modo monitor, escaneo de objetivos y captura de tráfico.
+[-]  Captura de handshake: Guía el proceso de selección de interfaz, habilitación de modo monitor, escaneo de objetivos y captura de tráfico.
 
-[-] Ataque de diccionario: Utiliza un archivo .cap capturado previamente para intentar recuperar la contraseña mediante listas de palabras.
+[-]  Ataque de diccionario: Utiliza un archivo .cap capturado previamente para intentar recuperar la contraseña mediante listas de palabras.
 
-[-] Ataque de fuerza bruta (Hashcat): Convierte capturas al formato HC22000 y permite configurar ataques complejos seleccionando juegos de caracteres y potencia de hardware.
+[-]  Ataque de fuerza bruta (Hashcat): Convierte capturas al formato HC22000 y permite configurar ataques complejos seleccionando juegos de caracteres y potencia de hardware.
 
-[-] Ataque Evil Twin: Configura un punto de acceso fraudulento para interceptar credenciales, gestionando simultáneamente la desconexión de clientes del punto de acceso legítimo.
+[-]  Ataque Evil Twin: Configura un punto de acceso fraudulento para interceptar credenciales, gestionando simultáneamente la desconexión de clientes del punto de acceso legítimo.
 
 ## Estructura del Proyecto
-
+```text
 ├── nethack.sh             # Script principal y punto de entrada
 └── scripts/               # Directorio que contiene los módulos funcionales
     ├── dattk.sh           # Módulo de ataque por diccionario
@@ -81,7 +81,7 @@ Al iniciar, se presentará un menú interactivo con las siguientes opciones:
     ├── mnport.sh          # Módulo de ataque Evil Twin
     ├── mnuch.sh           # Módulo de monitoreo y captura
     └── requeriments.sh    # Gestor de instalación de paquetes
-
+```
 ## Créditos
 
 Desarrollado por Nokia (Rousemary). Repositorio oficial: https://github.com/whoamijas0n/nethack
