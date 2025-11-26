@@ -46,7 +46,7 @@ Para el correcto funcionamiento de la suite, se requiere:
 Clone el repositorio en su máquina local y otorgue permisos de ejecución a los scripts:
 
 ```bash
-git clone [https://github.com/whoamijas0n/nethack.git](https://github.com/whoamijas0n/nethack.git)
+git clone https://github.com/whoamijas0n/nethack.git
 cd nethack
 chmod +x nethack.sh scripts/*.sh
 ```
