@@ -86,6 +86,9 @@ Al iniciar, se presentará un menú interactivo con las siguientes opciones:
 
 Esta herramienta ha sido desarrollada con fines exclusivamente educativos y de auditoría ética profesional. El uso de este software para atacar objetivos sin consentimiento previo y explícito es ilegal. El desarrollador no se hace responsable por el mal uso que se le pueda dar a esta herramienta ni por los daños causados. Es responsabilidad del usuario final cumplir con todas las leyes locales, estatales y federales aplicables.
 
-## Créditos
+## Licencia y Autor
 
-Desarrollado por Nokia (Rousemary). Repositorio oficial: https://github.com/whoamijas0n/nethack
+Este proyecto ha sido creado por **Jason Caballero (whoamijas0n)**.
+
+Distribuido bajo la licencia **GNU General Public License v3.0**.  
+Consulta el archivo `LICENSE` para más detalles.
