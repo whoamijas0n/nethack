@@ -15,14 +15,16 @@ bash scripts/log.sh
 echo ""
 echo -e "\033[33m[-] Menu de opciones:\033[0m"
 echo ""
-echo "[0] Instalar dependencias"
 echo "[1] Captura de handshake"
 echo "[2] Ataque de diccionario"
 echo "[3] Ataque de fuerza bruta utilizando Hashcat"
 echo "[4] Ataque Evil Twin"
 echo "[5] Salir"
-
-
+echo ""
+echo -e "\033[34m[-] Utilidades extra:\033[0m"
+echo ""
+echo "[a] Cambiar de direccion MAC"
+echo "[b] Instalar dependencias"
 echo ""
 
 read -p $'\e[31m[-] Elige una opcion: \e[0m ' opcion
@@ -30,9 +32,13 @@ read -p $'\e[31m[-] Elige una opcion: \e[0m ' opcion
 # empieza el menu de casos segun la opcion que se haya tomado
 
 case $opcion in
-	
 
-	"0")
+  	"a")
+                clear
+                bash scripts/mnmac.sh
+                ;; 	
+
+	"b")
 		clear
 		bash scripts/requeriments.sh
 		;;		
