@@ -221,32 +221,14 @@ Al iniciar, se presentará un menú interactivo con las siguientes opciones:
 
 
 ```text
-
-
 ├── nethack.sh             # Script principal y punto de entrada
-
-
 └── scripts/               # Directorio que contiene los módulos funcionales
-
-
     ├── dattk.sh           # Módulo de ataque por diccionario
-
-
     ├── log.sh             # Archivo de cabecera e información de versión
-
-
     ├── mnhash.sh          # Módulo de fuerza bruta con Hashcat
-
-
     ├── mnport.sh          # Módulo de ataque Evil Twin
-
-
     ├── mnuch.sh           # Módulo de monitoreo y captura
-
-
     └── requeriments.sh    # Gestor de instalación de paquetes
-
-
 ```
 
 
