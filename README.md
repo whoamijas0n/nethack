@@ -131,17 +131,9 @@ Clone el repositorio en su máquina local y otorgue permisos de ejecución a los
 
 
 ```bash
+git clone https://github.com/whoamijas0n/NetHack.git
 
-
-git clone https://github.com/whoamijas0n/nethack.git
-
-
-cd nethack
-
-
-chmod +x nethack.sh scripts/*.sh
-
-
+cd NetHack
 ```
 
 
@@ -158,11 +150,7 @@ Para iniciar la herramienta, ejecute el script principal desde el directorio ra�
 
 
 ```bash
-
-
 sudo bash nethack.sh
-
-
 ```
 
 
