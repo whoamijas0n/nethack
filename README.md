@@ -13,7 +13,7 @@ NetHack es un conjunto de scripts en Bash diseñados para automatizar y facilita
 <p align="center">
 
 
-  <img src="img/menu.jpeg" alt="Imagen de el menu de Nethack" width="850">
+  <img src="img/img.png" alt="Imagen de el menu de Nethack" width="850">
 
 
 </p>
